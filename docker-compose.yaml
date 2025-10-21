@@ -1,0 +1,27 @@
+services:
+  scrapy-gundem:
+    build: .
+    container_name: eksisozluk_scrapy
+    env_file:
+      - .env
+    volumes:
+      - ${HOST_DIR}/${FOLDER_NAME_DATA}:/app/eksisozluk_data
+      - ${HOST_DIR}/${FOLDER_NAME_LOG}:/app/eksisozluk_log
+    working_dir: /app/eksisozluk
+    command: scrapy crawl eksi_sozluk
+
+
+  scrapy-kanal:
+    build: .
+    container_name: eksisozluk_scrapy_kanal
+    env_file:
+      - .env
+    volumes:
+      - ${HOST_DIR}/${FOLDER_NAME_DATA}:/app/eksisozluk_data
+      - ${HOST_DIR}/${FOLDER_NAME_LOG}:/app/eksisozluk_log
+    working_dir: /app/eksisozluk
+    command: scrapy crawl eksi_sozluk_kanal
+
+volumes:
+  eksisozluk_data:
+  eksisozluk_log:
